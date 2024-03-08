@@ -10,14 +10,18 @@ const User = ({ gender, name, location, email, picture, login ,dob}) => {
     };
 
     const saveUserData = (userData) => {
-        axios.post('http://api-user66006.se-rmutl.net/api/saveuser', userData) // ส่งข้อมูลผู้ใช้ไปยังเซิร์ฟเวอร์ Express
-            .then(response => {
-                console.log(response.data); // แสดงข้อมูลการตอบกลับจากเซิร์ฟเวอร์
-            })
-            .catch(error => {
-                console.error('Error saving user data:', error); // จัดการข้อผิดพลาด
-            });
-    };
+        axios.post('http://api-user66006.se-rmutl.net/api/saveuser', userData, {
+            headers: {
+                'Content-Type': 'application/json' // ระบุ Content-Type เป็น JSON
+            }
+        })
+        .then(response => {
+            console.log(response.data); // แสดงข้อมูลการตอบกลับจากเซิร์ฟเวอร์
+        })
+        .catch(error => {
+            console.error('Error saving user data:', error); // จัดการข้อผิดพลาด
+        });
+};
 
     return (
         <div className="random-user">
